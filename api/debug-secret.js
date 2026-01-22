@@ -1,8 +1,9 @@
 export default function handler(req, res) {
-  const s = process.env.WEBHOOK_SECRET || "";
   res.status(200).json({
-    hasSecret: !!s,
-    secretLen: s.length,
-    envKeysHint: Object.keys(process.env).includes("WEBHOOK_SECRET")
+    ok: true,
+    hasSecret: !!process.env.WEBHOOK_SECRET,
+    hasAllowedChat: !!process.env.TG_ALLOWED_CHAT_ID,
+    allowedChat: process.env.TG_ALLOWED_CHAT_ID || null,
+    version: "tg-webhook-whitelist-v2"
   });
 }
