@@ -143,7 +143,7 @@ export default async function handler(req, res) {
     if (!post) return res.status(200).json({ ok: true, ignored: true, why: "no_post" });
 
     // ✅ CHANNEL WHITELIST (PRIVATE CHANNEL)
-    TG_ALLOWED_CHAT_ID = -1002192025020
+    // Set env TG_ALLOWED_CHAT_ID = -1002192025020
     const allowedChatId = (process.env.TG_ALLOWED_CHAT_ID || "").trim();
     const incomingChatId = String(post?.chat?.id ?? "").trim();
 
@@ -194,4 +194,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ ok: false, error: String(e) });
   }
 }
-
